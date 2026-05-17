@@ -106,7 +106,6 @@ The framework produces time-dependent quantum dynamics that can be directly comp
 
 ## Magnetization Dynamics (Exact vs Trotter)
 
-> Insert figure below:
 
 ![Magnetization Dynamics](figures/square_tfim_magnetization_exact_vs_trotter.png)
 
