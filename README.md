@@ -98,7 +98,8 @@ t, mz_trotter = observable_vs_time(
     observable=obs_z
 )
 
-````markdown
+```
+
 # Example Output
 
 The framework produces time-dependent quantum dynamics that can be directly compared between exact and approximate evolution methods.
