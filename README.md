@@ -68,7 +68,7 @@ It is fully implemented using NumPy and SciPy without reliance on external quant
 ```python
 bonds = squarelattice(Nx=3, Ny=2)
 
-basis = transverse_ising_hamiltonian(
+H = transverse_ising_hamiltonian(
     bonds,
     J=1,
     h=1
@@ -81,7 +81,7 @@ obs_z = magnetization(axis='Z')
 
 t, mz_exact = observable_vs_time(
     qc,
-    basis,
+    H,
     time=15,
     timesteps=100,
     method='exact',
@@ -90,7 +90,7 @@ t, mz_exact = observable_vs_time(
 
 t, mz_trotter = observable_vs_time(
     qc,
-    basis,
+    H,
     time=15,
     timesteps=100,
     method='trotter',
@@ -215,7 +215,7 @@ quantum_sim/
 ├── lattices.py
 ├── observables.py
 ├── plotting.py
-└── operators.py
+└── gates.py
 
 examples/
 ├── tfim_demo.py
