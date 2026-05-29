@@ -1,6 +1,6 @@
 # Quantum Lattice Simulation Framework
 
-A quantum simulation framework built from scratch in Python (NumPy + SciPy) for studying lattice Hamiltonian dynamics using both exact time evolution and digital (Trotterized) quantum simulation.
+A quantum simulation framework built from scratch in Python (NumPy + SciPy) for studying quantum many-body lattice dynamics using both exact time evolution and digital (Trotterized) quantum simulation.
 
 This project bridges quantum computing and condensed matter physics by providing tools to construct Hamiltonians, simulate time evolution, and compute physical observables on lattice systems such as the Fermi-Hubbard, Heisenberg, and Transverse-Field Ising models.
 
@@ -8,18 +8,31 @@ This project bridges quantum computing and condensed matter physics by providing
 
 # Overview
 
-This framework implements a Hamiltonian-first approach to quantum simulation. Instead of focusing purely on circuit abstractions, it represents quantum dynamics in terms of physically meaningful Pauli-string Hamiltonians defined on lattice geometries.
+This project combines low-level circuit-based quantum simulation with a Hamiltonian-centric architecture for quantum many-body dynamics. The framework represents physical systems through Pauli-string Hamiltonians defined on lattice geometries, while also providing explicit gate-level statevector evolution through custom implementations of single-qubit gates, CNOT operations, and Trotterized circuit decompositions.
 
-The framework supports:
+Core capabilities include:
 
-- Exact quantum time evolution via matrix exponentiation
-- Digital quantum simulation via Trotter decomposition
-- Arbitrary Pauli-string Hamiltonians
-- 2D lattice model construction
-- Observable tracking (magnetization, correlations)
-- Benchmarking of exact vs approximate dynamics
+* Exact quantum time evolution via matrix exponentiation
+* Digital quantum simulation via Trotter decomposition
+* Arbitrary Pauli-string Hamiltonian construction
+* Explicit gate-level statevector simulation
+* Bitwise CNOT and qubit-index manipulation
+* Lattice model generation for:
 
-It is fully implemented using NumPy and SciPy without reliance on external quantum SDKs.
+  * Transverse Field Ising Model (TFIM)
+  * Heisenberg Model
+  * Fermi–Hubbard Model
+* Fermi-Hubbard Jordan–Wigner mapping
+* Observable tracking:
+
+  * Magnetization
+  * Two-point correlations
+  * Correlation maps
+* Benchmarking of exact vs approximate dynamics
+* Modular simulation and plotting workflows
+
+The framework is implemented directly using NumPy and SciPy rather than relying on high-level quantum SDK abstractions.
+
 
 ---
 
@@ -48,6 +61,9 @@ It is fully implemented using NumPy and SciPy without reliance on external quant
   $U(t) = e^{-iHt}$
   
 - Trotterized evolution via operator decomposition
+
+  $U(t) \approx \left( \prod_j e^{-i H_j \Delta t} \right)^n$
+  
 - Configurable Trotter step resolution
 
 ## Observables
@@ -165,8 +181,7 @@ This implementation is educational and exploratory in nature and has several lim
 
 ## Physics extensions not yet implemented
 
-- fermionic Hamiltonians (Hubbard model)
-- Jordan-Wigner transformation
+- non-Hubbard-specific Jordan-Wigner mappings
 - entanglement entropy
 - structure factors in momentum space
 
@@ -176,11 +191,10 @@ This implementation is educational and exploratory in nature and has several lim
 
 Planned extensions include:
 
-## Physics Models
+## Physics
 
-- Heisenberg spin models
-- Fermi-Hubbard model
-- fermionic mappings (Jordan-Wigner)
+- periodic lattce boundary conditions
+- other lattice geometries (e.g. triangular, kagome, 1/5th-depleted square lattice)
 
 ## Advanced Observables
 
@@ -230,8 +244,8 @@ figures/
 # Installation
 
 ```bash
-git clone <your-repo-url>
-cd quantum-lattice-sim
+git clone https://github.com/BrendanStork/Quantum-Lattice-Evolver-First-Principles
+cd Quantum-Lattice-Evolver-First-Principles
 pip install numpy scipy matplotlib
 ```
 
