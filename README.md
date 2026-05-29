@@ -158,7 +158,7 @@ Physical observables are implemented as composable functions acting on quantum s
 - circuits define state evolution
 - observables define measurements
 
-## 5. Educational transparency
+## 5. Algorithmic transparency
 
 All operations are implemented explicitly using NumPy and SciPy for clarity rather than black-box optimization.
 
@@ -166,7 +166,7 @@ All operations are implemented explicitly using NumPy and SciPy for clarity rath
 
 # Limitations
 
-This implementation is educational and exploratory in nature and has several limitations.
+This implementation is exploratory in nature and has several limitations.
 
 ## Computational scaling
 
