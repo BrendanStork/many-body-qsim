@@ -1,4 +1,4 @@
-oimport numpy as np
+import numpy as np
 
 
 GATES = {

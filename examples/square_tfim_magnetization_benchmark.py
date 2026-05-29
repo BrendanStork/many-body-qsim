@@ -6,6 +6,18 @@ from src.plotting import (
     	plot_observable
 )
 
+# This version of the trotterization function uses a fixed number
+# of trotter steps, rather than a fixed delta t (dt). This is
+# to compare what times the trotterized method begins
+# to diverge from the exact solution and by what degree for different
+# numbers of repititions of trotter step operations.
+
+# This means that for each time t_i, trotterization with that fixed
+# number of steps N is implemented, with dt = t_i/N. dt increases
+# as time increases, which is the source of error, with the function
+# approching the exact solution as N -> inf.
+
+
   
 def main():
 	
