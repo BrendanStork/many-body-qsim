@@ -1,6 +1,6 @@
 # Quantum Lattice Simulation Framework
 
-A quantum simulation framework built from scratch in Python (NumPy + SciPy) for studying quantum many-body lattice dynamics using both exact time evolution and digital (Trotterized) quantum simulation.
+A quantum simulation framework built from scratch in Python (NumPy and SciPy) for studying quantum many-body lattice dynamics using both exact time evolution and digital (Trotterized) quantum simulation.
 
 This project bridges quantum computing and condensed matter physics by providing tools to construct Hamiltonians, simulate time evolution, and compute physical observables on lattice systems such as the Fermi-Hubbard, Heisenberg, and Transverse-Field Ising models.
 
@@ -40,20 +40,24 @@ The framework is implemented directly using NumPy and SciPy rather than relying 
 
 ## Quantum Circuit Simulation
 - Statevector-based quantum simulation
-- Single-qubit gates: X, Y, Z, H, S, T, rotations
-- Multi-qubit CNOT implementation (bitwise optimized)
-- Circuit state copying for independent evolution branches
+- Full single-qubit gate set: X, Y, Z, H, S, T, rotations
+- Multi-qubit CNOT via bitwise optimized amplitude manipulation
+- Circuit evolution via sequential gate application
 
 ## Hamiltonian Construction
-- Arbitrary Pauli-string Hamiltonians
-- Automatic validation of operator structure
-- Conversion from symbolic operators to matrix form
-- Transverse-field Ising Hamiltonian generator
+- Arbitrary Pauli-string Hamiltonians on N-qubit systems
+- Operator validation and consistency checks
+- Conversion from symbolic operators to matrix form or Totterized operations
+- Fermi-Hubbard model Hamiltonian support
+- Heisenberg model
+- Transverse-field Ising model
+- Jordan-Wigner decomposition for Fermi-Hubbard
 
-## Lattice Models
-- 2D square lattice generator (open boundary conditions)
-- Bond-based interaction construction
-- Flexible mapping from lattice sites to qubits
+## Lattice Model Generation
+- 2D square lattice with open boundary conditions
+- Bond-based interaction graph construction
+- Site-to-qubit mapping for many-body systems
+- Scalable lattice Hamiltonian assembly
 
 ## Time Evolution
 - Exact evolution:
@@ -65,16 +69,18 @@ The framework is implemented directly using NumPy and SciPy rather than relying 
   $U(t) \approx \left( \prod_j e^{-i H_j \Delta t} \right)^n$
   
 - Configurable Trotter step resolution
+- Exact vs approximate benchmarking support
 
 ## Observables
 - Magnetization along X, Y, Z
 - Two-point correlation functions
-- General expectation value interface
+- General expectation value framework for arbitrary operators
 - Time-dependent observable tracking
 
 ## Visualization
 - Exact vs Trotter comparison plots
 - Multi-panel subplot support
+- Correlation maps
 - Matplotlib wrapper for consistent scientific visualization
 
 ---

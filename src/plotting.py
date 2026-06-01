@@ -47,3 +47,35 @@ def plot_observable(
     ax.set_xlim(x[0], x[-1])
 
     return ax
+
+def plot_correlation_map(
+    corr_map,
+    *,
+    ax=None,
+    title=None,
+    cmap='coolwarm',
+    colorbar=True
+):
+
+    if ax is None:
+        fig, ax = plt.subplots()
+
+    im = ax.imshow(
+        corr_map,
+        cmap=cmap,
+        origin='lower'
+    )
+
+    ax.set_xlabel('Site j')
+    ax.set_ylabel('Site i')
+
+    if title:
+        ax.set_title(title)
+
+    if colorbar:
+        plt.colorbar(im, ax=ax)
+
+    plt.xticks(np.arange(0, len(corr_map[0, :]), dtype=np.int32))
+    plt.yticks(np.arange(0, len(corr_map[:, 0]), dtype=np.int32))
+
+    return ax

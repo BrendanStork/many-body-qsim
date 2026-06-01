@@ -34,16 +34,6 @@ def general_hamiltonian(**pauli_terms): # Checks for errors then turns input int
     return pauli_terms
 
 
-def squarelattice(Nx, Ny, y_periodic = False, full_periodic = False):
-    bonds = []
-    for i in range(Nx * Ny):
-        if (i+1) % Nx != 0: # Connects right up until boundary
-            bonds.append([i, i+1])
-        if i < Nx*(Ny-1): # Connects down up until boundary
-            bonds.append([i, i+Nx])
-    return bonds
-
-
 def transverse_ising_hamiltonian(bonds, J, h, transverse = True):
     ising_hamil = {}
     sites = {site for bond in bonds for site in bond}
@@ -263,3 +253,19 @@ def hubbard_hamiltonian(bonds, *, t, U):
     return hubbard_hamil
 
 
+def hubbard_spectrum(bonds, * , t, U, num_fermions):
+    sites = {site for bond in bonds for site in bond}
+    num_sites = max(sites) + 1 #
+    basis = hubbard_hamiltonian(bonds, t=t, U=U)
+    dimension = 4**num_sites # Hilbert dimension for fermions
+    N_list = [bin(i).count("1") for i in range(dimension)] # For every basis state, lists count of fermions
+    N_target = num_fermions # Desired particle number subspace target (e.g. N = 2 fermions in system)
+    
+    H = 0*1j
+    for op, coeff in basis.items():
+        H += coeff * string_to_operator(op)
+
+    indices = [i for i in range(16) if N_list[i] == N_target] # Which basis state indices have N_target fermions
+    H_N = H[np.ix_(indices, indices)] # Create Hamiltonian subpace for N_target
+    E_N = np.linalg.eigh(H_N) # Energy spectrum for H_N
+    return E_N
