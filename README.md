@@ -71,6 +71,22 @@ The framework is implemented directly using NumPy and SciPy rather than relying 
 - Configurable Trotter step resolution
 - Exact vs approximate benchmarking support
 
+## Trotter Evolution Modes
+
+The framework supports two Trotterization strategies:
+
+- Fixed timestep (default):
+  
+  ψₙ₊₁ = U(Δt) ψₙ
+
+  This approach mirrors standard numerical time integration methods and is well suited for long-time dynamical simulations.
+
+- Fixed Trotter order:
+
+  A fixed number of Trotter slices is used for a target evolution time.
+
+  This mode is primarily intended for benchmarking Trotterization error against exact evolution.
+
 ## Observables
 - Magnetization along X, Y, Z
 - Two-point correlation functions

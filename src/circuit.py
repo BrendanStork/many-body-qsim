@@ -13,9 +13,9 @@ def build_full_operator(gate_matrix, target_qubit, num_qubits):
             ops.append(gate_matrix)     # already a matrix
         else:
             ops.append(GATES['I'])      # matrix
-    #print(ops)
+
     full_op = ops[0]
-    #print(full_op)
+
     for op in ops[1:]:
         full_op = np.kron(full_op, op)
 
@@ -32,16 +32,14 @@ class Quantum_Circuit:
 
     def gate_op(self, gate, target):
 
-    #qc = qc0.copy()
-
-        bit = self.numqubits - 1 - target
+        bit = self.numqubits - 1 - target # Index change from big endian to little endian
     
         for i in range(len(self.state)):
     
-            # only process "0" side of pair
+            # Only processes "0" side of pair
             if ((i >> bit) & 1) == 0:
     
-                j = (i | (1 << bit))
+                j = (i | (1 << bit)) # Finds pair base
     
                 a0 = self.state[i]
                 a1 = self.state[j]
@@ -57,42 +55,53 @@ class Quantum_Circuit:
     
 
     def x(self, qubitIndex):
-        return self.gate_op(GATES['X'], qubitIndex)
-        #return self.gate_op(GATES['X'], qubitIndex)
+        self.gate_op(GATES['X'], qubitIndex)
+        return
+
         
     def y(self, qubitIndex):
-        return self.gate_op(GATES['Y'], qubitIndex)
+        self.gate_op(GATES['Y'], qubitIndex)
+        return
         
     def z(self, qubitIndex):
-        return self.gate_op(GATES['Z'], qubitIndex)
+        self.gate_op(GATES['Z'], qubitIndex)
+        return
         
     def h(self, qubitIndex):
-        return self.gate_op(GATES['H'], qubitIndex)
+        self.gate_op(GATES['H'], qubitIndex)
+        return
 
     def s(self, qubitIndex):
-        return self.gate_op(GATES['S'], qubitIndex)
+        self.gate_op(GATES['S'], qubitIndex)
+        return
 
     def t(self, qubitIndex):
-        return self.gate_op(GATES['T'], qubitIndex)
+        self.gate_op(GATES['T'], qubitIndex)
+        return
 
     def sdag(self, qubitIndex):
-        return self.gate_op(GATES['Sdag'], qubitIndex)
+        self.gate_op(GATES['Sdag'], qubitIndex)
+        return
 
     def p(self, qubitIndex, theta):
-        return self.gate_op(GATES['P'](theta), qubitIndex)
+        self.gate_op(GATES['P'](theta), qubitIndex)
+        return
 
     def rx(self, qubitIndex, theta):
-        return self.gate_op(GATES['RX'](theta), qubitIndex)
+        self.gate_op(GATES['RX'](theta), qubitIndex)
+        return
 
     def ry(self, qubitIndex, theta):
-        return self.gate_op(GATES['RY'](theta), qubitIndex)
+        self.gate_op(GATES['RY'](theta), qubitIndex)
+        return
         
     def rz(self, qubitIndex, theta):
-        return self.gate_op(GATES['RZ'](theta), qubitIndex)
+        self.gate_op(GATES['RZ'](theta), qubitIndex)
+        return
 
     def cx(self, control, target):
         self.state = apply_cnot(self.state, control, target)
-        return self.state
+        return
         
     def expectation_value(self, pauli_string):
 

@@ -59,10 +59,10 @@ def correlation_map(axis='Z'):
         return corr
 
     return _obs
-
-
-def observable_vs_time(qc0, basis, *, time, dt, method, observable, sample_every = 1, trotter_steps = None):
-    N = int(time/dt)
+    
+def observable_vs_time(qc0, basis, *, time, timesteps, method, observable, dt = None, sample_every = 1, trotter_steps = None):
+    N = timesteps
+    dt = time/timesteps
     t = np.linspace(0, time, N)
     
     vals = np.zeros(N)
@@ -84,14 +84,16 @@ def observable_vs_time(qc0, basis, *, time, dt, method, observable, sample_every
             if i % sample_every == 0:
                 #print(i % sample_every)
                 vals.append(observable(qc))
-    
     elif method == 'trotter_fixed_steps':
-        for i in range(N):
+        for i in range(timesteps):
             qc = qc0.copy()
-            psi = trotter_evolve(qc, basis, time = t[i], trotter_steps=trotter_steps)
+            psi = trotter_evolve(
+                qc,
+                basis,
+                time=t[i],
+                trotter_steps=trotter_steps
+            )
             vals[i] = observable(psi)
-    
-
     else:
         raise ValueError("Unknown method")
 

@@ -23,7 +23,7 @@ from src.plotting import (
 def main():
 	
 	bonds = squarelattice(Nx = 3, Ny = 2)
-	H = transverse_ising_hamiltonian(bonds, J = 1.5, h = 3)
+	H = transverse_ising_hamiltonian(bonds, J = 1, h = 0.5)
 
 	qc = Quantum_Circuit(6)
 	qc.x(0) # Initial excitation
@@ -33,14 +33,20 @@ def main():
 	obs_magY = magnetization(axis = 'Y')
 	obs_magZ = magnetization(axis = 'Z')
 	
-	t, magXexact = observable_vs_time(qc, H, time = 20, dt = .1, method = 'exact', observable = obs_magX)
-	t, magXtrot = observable_vs_time(qc, H, time = 20, dt = .1, method = 'trotter', observable = obs_magX)
+	t, magXexact = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'exact', observable = obs_magX)
+	t, magXtrot = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'trotter_fixed_steps', trotter_steps = 20, observable = obs_magX)
+    t, magXtrot = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'trotter_fixed_steps', trotter_steps = 30, observable = obs_magX)
+    t, magXtrot = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'trotter_fixed_steps', trotter_steps = 40, observable = obs_magX)
 	
-	t, magYexact = observable_vs_time(qc, H, time = 20, dt = .1, method = 'exact', observable = obs_magY)
-	t, magYtrot = observable_vs_time(qc, H, time = 20, dt = .1, method = 'trotter', observable = obs_magY)
+	t, magYexact = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'exact', observable = obs_magY)
+	t, magYtrot = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'trotter_fixed_steps', trotter_steps = 20, observable = obs_magY)
+    t, magYtrot = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'trotter_fixed_steps', trotter_steps = 30, observable = obs_magY)
+    t, magYtrot = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'trotter_fixed_steps', trotter_steps = 40, observable = obs_magY)
 	
-	t, magZexact = observable_vs_time(qc, H, time = 20, dt = .1, method = 'exact', observable = obs_magZ)
-	t, magZtrot = observable_vs_time(qc, H, time = 20, dt = .1, method = 'trotter', observable = obs_magZ)
+	t, magZexact = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'exact', observable = obs_magZ)
+	t, magZtrot = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'trotter_fixed_steps', trotter_steps = 20, observable = obs_magZ)
+    t, magZtrot = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'trotter_fixed_steps', trotter_steps = 30, observable = obs_magZ)
+    t, magZtrot = observable_vs_time(qc, H, time = 20, timesteps = 100, method = 'trotter_fixed_steps', trotter_steps = 40, observable = obs_magZ)
 	
 	
 	fig, axs = plt.subplots(1, 3, figsize = (15, 5))
