@@ -14,15 +14,14 @@ Core capabilities include:
 
 * Exact time evolution via matrix exponentiation
 * Digital quantum simulation via Trotter decomposition
+* Jordan-Wigner fermionic operator -> qubit mapping for Fermi-Hubbard model
+* Lattice model generation for:
+  * Transverse Field Ising Model (TFIM)
+  * Heisenberg
+  * Fermi–Hubbard
 * Arbitrary Pauli-string Hamiltonian construction
 * Explicit gate-level statevector simulation
 * Bitwise CNOT and qubit-index manipulation
-* Lattice model generation for:
-
-  * Transverse Field Ising Model (TFIM)
-  * Heisenberg Model
-  * Fermi–Hubbard Model
-* Fermi-Hubbard Jordan–Wigner mapping
 * Observable tracking:
 
   * Magnetization
