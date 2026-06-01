@@ -12,7 +12,7 @@ The project combines low-level circuit-based quantum simulation with a Hamiltoni
 
 Core capabilities include:
 
-* Exact quantum time evolution via matrix exponentiation
+* Exact time evolution via matrix exponentiation
 * Digital quantum simulation via Trotter decomposition
 * Arbitrary Pauli-string Hamiltonian construction
 * Explicit gate-level statevector simulation
