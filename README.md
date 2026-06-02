@@ -1,8 +1,8 @@
 # Quantum Lattice Simulation Framework
 
-A quantum simulation framework built from scratch in Python (NumPy and SciPy) for studying quantum many-body lattice dynamics using both exact time evolution and digital (Trotterized) quantum simulation.
+A quantum circuit and Hamiltonian simulation framework built from scratch in Python (NumPy and SciPy), featuring custom statevector evolution, gate-level operations, Trotterized Hamiltonian simulation, and quantum many-body modeling.
 
-This project bridges quantum computing and condensed matter physics by providing tools to construct Hamiltonians, simulate time evolution, and compute physical observables on lattice systems such as the Fermi-Hubbard, Heisenberg, and Transverse-Field Ising models.
+The framework bridges quantum computing and condensed matter physics through implementations of quantum circuits, Pauli-string Hamiltonians, Jordan-Wigner mappings, and lattice models including the Fermi-Hubbard, Heisenberg, and Transverse-Field Ising systems.
 
 ---
 
@@ -12,21 +12,22 @@ The project combines low-level circuit-based quantum simulation with a Hamiltoni
 
 Core capabilities include:
 
-* Exact time evolution via matrix exponentiation
-* Digital quantum simulation via Trotter decomposition
-* Jordan-Wigner fermionic operator -> qubit mapping for Fermi-Hubbard model
-* Lattice model generation for:
-  * Transverse Field Ising Model (TFIM)
-  * Heisenberg
-  * Fermi–Hubbard
-* Arbitrary Pauli-string Hamiltonian construction
 * Explicit gate-level statevector simulation
 * Bitwise CNOT and qubit-index manipulation
+* Digital quantum simulation via Trotter decomposition
+* Lattice model generation for:
+
+  * Transverse Field Ising Model (TFIM)
+  * Heisenberg Model
+  * Fermi–Hubbard Model
+* Jordan-Wigner fermionic operator -> qubit mapping for Fermi-Hubbard 
+* Arbitrary Pauli-string Hamiltonian construction
 * Observable tracking:
 
   * Magnetization
   * Two-point correlations
   * Correlation maps
+* Exact time evolution via matrix exponentiation
 * Benchmarking of exact vs approximate dynamics
 * Modular simulation and plotting workflows
 
