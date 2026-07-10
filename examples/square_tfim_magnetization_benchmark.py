@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
-from many_body_qsim.src.circuit import Quantum_Circuit
-from src.hamiltonian import general_hamiltonian, transverse_ising_hamiltonian
-from src.lattices import squarelattice
-from src.observables import observable_vs_time, magnetization
-from src.plotting import (
+from many_body_qsim.circuit import Quantum_Circuit
+from many_body_qsim.hamiltonian import general_hamiltonian, transverse_ising_hamiltonian
+from many_body_qsim.lattices import squarelattice
+from many_body_qsim.observables import observable_vs_time, magnetization
+from many_body_qsim.plotting import (
                           plot_observable
                           )
 

@@ -1,4 +1,4 @@
-# Quantum Lattice Simulation Framework
+# Quantum Many-Body Simulation Framework
 
 A quantum circuit and Hamiltonian simulation framework built from scratch in Python (NumPy and SciPy), featuring custom statevector evolution, gate-level operations, Trotterized Hamiltonian simulation, and quantum many-body modeling.
 
