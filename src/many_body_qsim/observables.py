@@ -1,6 +1,6 @@
 import numpy as np
 from .evolution import trotter_evolve, trotter_step, exact_evolve
-from .circuit import Quantum_Circuit
+from .circuits import Quantum_Circuit
 
 
 

@@ -1,1 +1,1 @@
-many_body_qism
+many_body_qsim

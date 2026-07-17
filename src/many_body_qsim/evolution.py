@@ -1,5 +1,5 @@
 import numpy as np
-from .circuit import Quantum_Circuit
+from .circuits import Quantum_Circuit
 from scipy import linalg
 from .gates import GATES
 
