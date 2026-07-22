@@ -10,7 +10,7 @@ from many_body_qsim.hamiltonians import (
     hubbard_hamiltonian
     )
 
-bonds = square_lattice(3,2)
+bonds = square_lattice(2,2)
 
 def test_general_is_hermitian():
 

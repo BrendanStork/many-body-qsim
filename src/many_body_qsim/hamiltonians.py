@@ -7,6 +7,11 @@ def string_to_operator(pauli_string):
         operator = np.kron(operator, GATES[p])
     return operator
 
+def pauli_basis_to_matrix(H):
+    H_matrix = 0*1j
+    for op, coeff in H.items():
+        H_matrix += coeff * string_to_operator(op)
+    return H_matrix
 
 def general_hamiltonian(**pauli_terms): # Checks for errors then turns input into hamiltonian dict
 
@@ -256,7 +261,7 @@ def hubbard_hamiltonian(bonds, *, t, U):
 def hubbard_spectrum(bonds, * , t, U, num_fermions):
     sites = {site for bond in bonds for site in bond}
     num_sites = max(sites) + 1 #
-    basis = hubbard_hamiltonian(bonds, t=t, U=U)
+    H_pauli = hubbard_hamiltonian(bonds, t=t, U=U)
     dimension = 4**num_sites # Hilbert dimension for fermions
     N_list = [bin(i).count("1") for i in range(dimension)] # For every basis state, lists count of fermions
     N_target = num_fermions # Desired particle number subspace target (e.g. N = 2 fermions in system)
