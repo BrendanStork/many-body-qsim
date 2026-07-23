@@ -37,7 +37,6 @@ def two_site_correlation(i, j, axis='Z'):
             op[i] = axis
             op[j] = axis
         joined_op = ''.join(op)
-        print(joined_op)
         return psi.expectation_value(joined_op)
 
     return _obs
@@ -111,3 +110,5 @@ def observable_vs_trottersteps(qc0, basis, *, time, observable, trottersteps):
     return steps, vals
     
     
+def fidelity(state1, state2):
+    return np.abs(np.vdot(state1, state2))**2

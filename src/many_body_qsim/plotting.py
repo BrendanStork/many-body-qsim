@@ -48,13 +48,22 @@ def plot_observable(
 
     return ax
 
+'''
 def plot_correlation_map(
     corr_map,
     *,
     ax=None,
     title=None,
+    xlabel_fontsize=14,
+    ylabel_fontsize=14,
+    xlabel= 'Site i',
+    ylabel= 'Site j',
+    title_fontsize=15,
     cmap='coolwarm',
-    colorbar=True
+    colorbar=True,
+    vmin=None,
+    vmax=None,
+    **plot_kwargs
 ):
 
     if ax is None:
@@ -63,19 +72,92 @@ def plot_correlation_map(
     im = ax.imshow(
         corr_map,
         cmap=cmap,
-        origin='lower'
+        origin='lower',
+        vmin=vmin,
+        vmax=vmax,
+        **plot_kwargs
     )
 
-    ax.set_xlabel('Site j')
-    ax.set_ylabel('Site i')
+    
+    if xlabel:
+        ax.set_xlabel(xlabel, fontsize=xlabel_fontsize)
+
+    if ylabel:
+        ax.set_ylabel(ylabel, fontsize=ylabel_fontsize)
+
+    if title:
+        ax.set_title(title, fontsize=title_fontsize)
+
+    if colorbar:
+        plt.colorbar(im, ax=ax)
+    
+    n_sites_i, n_sites_j = corr_map.shape
+    
+    ax.set_xticks(np.arange(n_sites_j))
+    ax.set_yticks(np.arange(n_sites_i))
+    ax.set_xticklabels(np.arange(1, n_sites_j + 1))
+    ax.set_yticklabels(np.arange(1, n_sites_i + 1))
+   
+    #plt.xticks(np.arange(0, len(corr_map[0, :]), #dtype=np.int32))
+    #plt.yticks(np.arange(0, len(corr_map[:, 0]), #dtype=np.int32))
+ 
+    return ax
+'''
+
+def plot_correlation_map(
+    corr_map,
+    *,
+    ax=None,
+    title=None,
+    title_fontsize=15,
+    xlabel='Site i',
+    ylabel='Site j',
+    xlabel_fontsize=14,
+    ylabel_fontsize=14,
+    cmap='coolwarm',
+    colorbar=True,
+    colorbar_label=None,
+    vmin=None,
+    vmax=None,
+    **imshow_kwargs
+):
+
+    if ax is None:
+        fig, ax = plt.subplots()
+
+    im = ax.imshow(
+        corr_map,
+        cmap=cmap,
+        origin='lower',
+        vmin=vmin,
+        vmax=vmax,
+        **imshow_kwargs
+    )
+
+    if xlabel:
+        ax.set_xlabel(xlabel, fontsize=xlabel_fontsize)
+
+    if ylabel:
+        ax.set_ylabel(ylabel, fontsize=ylabel_fontsize)
 
     if title:
         ax.set_title(title)
 
+    #if colorbar:
+    #    plt.colorbar(im, ax=ax)
+    
     if colorbar:
-        plt.colorbar(im, ax=ax)
+        cbar = plt.colorbar(im, ax=ax)
+    
+        if colorbar_label is not None:
+            cbar.set_label(colorbar_label)
+            cbar.ax.yaxis.set_label_position('right')
+        
+    n_sites_i, n_sites_j = corr_map.shape
 
-    plt.xticks(np.arange(0, len(corr_map[0, :]), dtype=np.int32))
-    plt.yticks(np.arange(0, len(corr_map[:, 0]), dtype=np.int32))
+    ax.set_xticks(np.arange(n_sites_j))
+    ax.set_yticks(np.arange(n_sites_i))
+    ax.set_xticklabels(np.arange(1, n_sites_j + 1))
+    ax.set_yticklabels(np.arange(1, n_sites_i + 1))
 
     return ax

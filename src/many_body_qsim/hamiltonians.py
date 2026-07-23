@@ -60,7 +60,7 @@ def transverse_ising_hamiltonian(bonds, *, J, h, transverse = True):
             ising_hamil[joined_pauli_term] = -h
     return ising_hamil
     
-def heisenberg_xyz_hamiltonian(bonds, *, Jx, Jy, Jz, h):
+def heisenberg_hamiltonian(bonds, *, Jx, Jy, Jz, h):
     
     heisen_hamil = {}
     sites = {site for bond in bonds for site in bond}
